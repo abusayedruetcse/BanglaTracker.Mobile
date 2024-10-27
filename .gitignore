@@ -3,3 +3,13 @@
 ################################################################################
 
 /src/.vs
+/src/BanglaTracker.BLL/bin/
+/src/BanglaTracker.BLL/obj
+/src/BanglaTracker.Core/bin/
+/src/BanglaTracker.Core/obj
+/src/BanglaTracker.Infrastructure/bin/
+/src/BanglaTracker.Infrastructure/obj
+/src/BanglaTracker.MobileApp/bin/
+/src/BanglaTracker.MobileApp/obj
+/src/BanglaTracker.Presentation/bin/
+/src/BanglaTracker.Presentation/obj
