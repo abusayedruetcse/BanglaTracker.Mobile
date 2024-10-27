@@ -1,0 +1,1 @@
+D:\Projects\Koi.com\BanglaTracker.Mobile\src\BanglaTracker.MobileApp\BanglaTracker.MobileApp.csproj;x64
