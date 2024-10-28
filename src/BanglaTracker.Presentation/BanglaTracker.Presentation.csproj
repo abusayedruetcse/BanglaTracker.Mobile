@@ -19,16 +19,31 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Components\" />
-	  <Folder Include="Converters\" />
 	  <Folder Include="Resources\" />
-	  <Folder Include="Views\" />
-	  <Folder Include="ViewModels\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BanglaTracker.BLL\BanglaTracker.BLL.csproj" />
+	  <ProjectReference Include="..\BanglaTracker.Core\BanglaTracker.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\TrainLocationPage.xaml.cs">
+	    <DependentUpon>TrainLocationPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\TrainLocationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -30,6 +30,19 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="OpenTrainLocationBtn"
+                Text="Open Train Location" 
+                SemanticProperties.Hint="Open Train Location Page"
+                Clicked="OnOpenTrainLocationPageClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Dummy Page"
+                Clicked="OnCounterClicked1" />
+
+
         </VerticalStackLayout>
     </ScrollView>
 
