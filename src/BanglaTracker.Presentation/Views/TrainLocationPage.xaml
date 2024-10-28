@@ -1,31 +1,56 @@
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:BanglaTracker.Presentation.ViewModels"
-             x:Class="BanglaTracker.Presentation.Views.TrainLocationPage">
+             xmlns:converters="clr-namespace:BanglaTracker.Presentation.Converters"
+             x:Class="BanglaTracker.Presentation.Views.TrainLocationPage"
+             Title="Train Location Tracker">
 
-    <StackLayout Padding="20">
+    <ContentPage.Resources>
+        <!-- Ensure PointStatusConverter is registered in resources -->
+        <converters:PointStatusConverter x:Key="PointStatusConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView>
         <CollectionView ItemsSource="{Binding Points}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame WidthRequest="60" HeightRequest="60" BorderColor="Gray" Padding="10" CornerRadius="30">
-                        <StackLayout>
-                            <!-- Display point name and status -->
-                            <Label Text="{Binding Name}" FontSize="12" HorizontalOptions="Center" />
-                            <BoxView WidthRequest="30" HeightRequest="30" CornerRadius="15">
-                                <BoxView.Color>
-                                    <MultiBinding Converter="{StaticResource PointStatusConverter}">
-                                        <Binding Path="IsCrossed" />
-                                        <Binding Path="IsCurrent" />
-                                    </MultiBinding>
-                                </BoxView.Color>
-                            </BoxView>
+                    <Grid ColumnDefinitions="40, *, 10"
+                          RowDefinitions="Auto"
+                          Margin="10">
+
+                        <!-- Vertical Line -->
+                        <BoxView Grid.RowSpan="2"
+                                 BackgroundColor="Gray"
+                                 WidthRequest="2"
+                                 VerticalOptions="FillAndExpand" />
+
+                        <!-- Point Icon or Status Indicator -->
+                        <Frame Grid.Column="0"
+                               CornerRadius="15"
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               BackgroundColor="{Binding ., Converter={StaticResource PointStatusConverter}}"
+                               BorderColor="Black"
+                               HasShadow="True"
+                               HorizontalOptions="Center">
+                        </Frame>
+
+                        <!-- Point Details -->
+                        <StackLayout Grid.Column="1"
+                                     Padding="10,0"
+                                     VerticalOptions="Center">
+                            <Label Text="{Binding Name}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+                            <Label Text="{Binding StatusText}"
+                                   FontSize="14"
+                                   TextColor="Gray" />
                         </StackLayout>
-                    </Frame>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <!-- Refresh Button -->
-        <Button Text="Refresh Train Location" Command="{Binding LoadTrainPointsCommand}" Margin="0,20,0,0" />
-    </StackLayout>
+    </ScrollView>
 </ContentPage>
+

@@ -1,28 +1,24 @@
-﻿using System.Globalization;
+﻿using BanglaTracker.Core.Entities;
+using System.Globalization;
 
 namespace BanglaTracker.Presentation.Converters
 {
-    public class PointStatusConverter : IMultiValueConverter
+    public class PointStatusConverter : IValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values == null || values.Length < 2 || values[0] == null || values[1] == null)
-            {
-                return Colors.LightGray; // Default color for unresolved points
-            }
+            var point = value as LocationPoint;
+            if (point == null) return Colors.LightGray;
 
-            bool isCrossed = (bool)values[0];
-            bool isCurrent = (bool)values[1];
+            if (point.IsCurrent)
+                return Colors.Green; // Color for the current point
+            if (point.IsCrossed)
+                return Colors.Gray;  // Color for reached points
 
-            if (isCurrent)
-                return Colors.Green;   // Color for current point
-            else if (isCrossed)
-                return Colors.Gray;    // Color for crossed points
-            else
-                return Colors.LightGray; // Color for remaining points
+            return Colors.LightGray; // Color for upcoming points
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
