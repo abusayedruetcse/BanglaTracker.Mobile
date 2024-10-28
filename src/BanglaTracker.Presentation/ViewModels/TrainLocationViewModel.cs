@@ -10,7 +10,7 @@ namespace BanglaTracker.Presentation.ViewModels
     {
         private readonly TrainPointService _trainPointService;
 
-        public ObservableCollection<TrainPoint> Points { get; set; } = new();
+        public ObservableCollection<LocationPoint> Points { get; set; } = new();
 
         public TrainLocationViewModel(TrainPointService trainPointService)
         {

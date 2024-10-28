@@ -13,10 +13,10 @@ namespace BanglaTracker.Infrastructure.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<TrainPoint>> GetTrainPointsAsync()
+        public async Task<List<LocationPoint>> GetTrainPointsAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<TrainPoint>>("https://api.example.com/train/points");
-            return response ?? new List<TrainPoint>();
+            var response = await _httpClient.GetFromJsonAsync<List<LocationPoint>>("https://api.example.com/train/points");
+            return response ?? new List<LocationPoint>();
         }
     }
 
