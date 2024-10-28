@@ -12,7 +12,10 @@
     <Folder Include="Caching\" />
     <Folder Include="Identity\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BanglaTracker.Core\BanglaTracker.Core.csproj" />
   </ItemGroup>
 
 </Project>
