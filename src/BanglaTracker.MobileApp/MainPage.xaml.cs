@@ -38,10 +38,10 @@ namespace BanglaTracker.MobileApp
 
         private async void OnOpenTrackingLocationBtnClicked(object sender, EventArgs e)
         {
-            // Resolve TrainLocationPage with TrainLocationViewModel from the DI container
+            // Resolve TrackingLocationPage from the DI container
             var trackingLocationPage = _serviceProvider.GetRequiredService<TrainTrackingPage>();
 
-            // Navigate to TrainLocationPage
+            // Navigate to TrackingLocationPage
             await Navigation.PushAsync(trackingLocationPage);
         }
 
