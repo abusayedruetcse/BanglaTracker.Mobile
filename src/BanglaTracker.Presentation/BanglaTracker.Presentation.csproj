@@ -34,12 +34,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TrainTrackingPage.xaml.cs">
+	    <DependentUpon>TrainTrackingPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TrainLocationPage.xaml.cs">
 	    <DependentUpon>TrainLocationPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\TrainTrackingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TrainLocationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

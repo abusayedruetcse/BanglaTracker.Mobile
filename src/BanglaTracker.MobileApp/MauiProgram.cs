@@ -1,4 +1,5 @@
-﻿using BanglaTracker.BLL.Services;
+﻿using BanglaTracker.BLL.Interfaces;
+using BanglaTracker.BLL.Services;
 using BanglaTracker.Infrastructure.Services;
 using BanglaTracker.Presentation.ViewModels;
 using BanglaTracker.Presentation.Views;
@@ -20,7 +21,7 @@ namespace BanglaTracker.MobileApp
                 });
 
             // Register HttpClient and TrainPointService
-            builder.Services.AddHttpClient<LocationService>(client =>
+            builder.Services.AddHttpClient<ILocationService, LocationService>(client =>
             {
                 client.BaseAddress = new Uri("https://api.example.com/");
             });
@@ -32,13 +33,15 @@ namespace BanglaTracker.MobileApp
             builder.Services.AddSingleton<MainPage>();
 
             
-            builder.Services.AddSingleton<TrainPointService>();
+            builder.Services.AddSingleton<ITrainPointService, TrainPointService>();
             builder.Services.AddTransient<TrainLocationPage1>();
 
 
             // Register pages and view models
             builder.Services.AddTransient<TrainLocationPage>();
             builder.Services.AddTransient<TrainLocationViewModel>();
+
+            builder.Services.AddTransient<TrainTrackingPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
