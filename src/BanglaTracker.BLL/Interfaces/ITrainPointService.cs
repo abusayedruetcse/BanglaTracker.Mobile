@@ -10,5 +10,7 @@ namespace BanglaTracker.BLL.Interfaces
     public interface ITrainPointService
     {
         Task<List<LocationPoint>> GetTrainPointsAsync();
+
+        Task SendGeolocationDataAsync(LocationData locationData);
     }
 }

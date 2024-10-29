@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <MauiXaml Update="Views\TrainTrackingPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\TrainLocationPage1.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

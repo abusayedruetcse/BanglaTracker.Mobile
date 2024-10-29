@@ -1,4 +1,4 @@
-﻿using BanglaTracker.BLL.Services;
+﻿using BanglaTracker.BLL.Interfaces;
 using BanglaTracker.Core.Entities;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,11 +8,11 @@ namespace BanglaTracker.Presentation.ViewModels
 {
     public partial class TrainLocationViewModel : ObservableObject
     {
-        private readonly TrainPointService _trainPointService;
+        private readonly ITrainPointService _trainPointService;
 
         public ObservableCollection<LocationPoint> Points { get; set; } = new();
 
-        public TrainLocationViewModel(TrainPointService trainPointService)
+        public TrainLocationViewModel(ITrainPointService trainPointService)
         {
             _trainPointService = trainPointService;
             LoadTrainPointsCommand = new AsyncRelayCommand(LoadTrainPointsAsync);

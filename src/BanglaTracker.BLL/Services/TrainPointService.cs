@@ -11,11 +11,11 @@ namespace BanglaTracker.BLL.Services
 {
     public class TrainPointService : ITrainPointService
     {
-        private readonly HttpClient _httpClient;
+        private readonly ILocationService _locationService;
 
-        public TrainPointService(HttpClient httpClient)
+        public TrainPointService(ILocationService locationService)
         {
-            _httpClient = httpClient;
+            _locationService = locationService;
         }
 
         public async Task<List<LocationPoint>> GetTrainPointsAsync()
@@ -45,8 +45,14 @@ namespace BanglaTracker.BLL.Services
             };
 
             return trainPoints;
-            //var response = await _httpClient.GetFromJsonAsync<List<TrainPoint>>("https://api.example.com/train/points");
-            //return response ?? new List<TrainPoint>();
+            
+            var response = await _locationService.GetTrainPointsAsync();
+            return response ?? new List<LocationPoint>();
+        }
+
+        public async Task SendGeolocationDataAsync(LocationData locationData)
+        {           
+            await _locationService.SendGeolocationDataAsync(locationData);
         }
     }
 }
