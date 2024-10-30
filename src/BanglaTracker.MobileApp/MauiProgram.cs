@@ -1,5 +1,6 @@
 ﻿using BanglaTracker.BLL.Interfaces;
 using BanglaTracker.BLL.Services;
+using BanglaTracker.Core.Interfaces;
 using BanglaTracker.Infrastructure.Services;
 using BanglaTracker.Presentation.ViewModels;
 using BanglaTracker.Presentation.Views;
@@ -20,11 +21,15 @@ namespace BanglaTracker.MobileApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            // Register HttpClient and TrainPointService
-            builder.Services.AddHttpClient<ILocationService, LocationService>(client =>
-            {
-                client.BaseAddress = new Uri("https://api.example.com/");
-            });
+            // Register HttpClient and LocationService
+            builder.Services.AddHttpClient<ILocationService, LocationService>()
+                .ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                    return new HttpClientHandler
+                    {
+                        ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true
+                    };
+                });
 
             // Register AppShell as a singleton
             builder.Services.AddSingleton<AppShell>();
