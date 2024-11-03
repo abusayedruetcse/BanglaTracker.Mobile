@@ -126,6 +126,7 @@ namespace BanglaTracker.Infrastructure.Services
                 {
                     // Deserialize the response content to JourneyResponseDto
                     journeyResponse = await response.Content.ReadFromJsonAsync<JourneyResponseDto>();
+                    journeyResponse.IsSuccess = true;
                 }
                 else
                 {
