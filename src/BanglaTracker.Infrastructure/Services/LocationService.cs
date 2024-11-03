@@ -1,4 +1,5 @@
-﻿using BanglaTracker.Core.Entities;
+﻿using BanglaTracker.Core.DTOs;
+using BanglaTracker.Core.Entities;
 using BanglaTracker.Core.Interfaces;
 using System.Net.Http.Json;
 
@@ -70,6 +71,51 @@ namespace BanglaTracker.Infrastructure.Services
                 Console.WriteLine($"Error in SendGeolocationDataAsync: {ex.Message}");
             }
         }
+        
+        public async Task<JourneyResponseDto> StartJourneyAsync(LocationData locationData)
+        {
+            JourneyResponseDto journeyResponse = new JourneyResponseDto();
+
+            try
+            {
+                // Fetch geolocation API URL and endpoint from configuration
+                var baseUrl = "https://192.168.0.100:44382";
+                var apiEndpoint = "/api/TrainJourney/{0}/start";
+
+                // Format the endpoint with the journeyId placeholder
+                var journeyId = 123; // TODO: Dynamically set the journey ID.
+                var apiUrl = $"{baseUrl.TrimEnd('/')}{string.Format(apiEndpoint, journeyId)}";
+
+                if (string.IsNullOrWhiteSpace(apiUrl))
+                {
+                    throw new InvalidOperationException("Train journey start URL is not configured correctly.");
+                }
+
+                // Send location data to the backend
+                var response = await _httpClient.PostAsJsonAsync(apiUrl, 1);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize the response content to JourneyResponseDto
+                    journeyResponse = await response.Content.ReadFromJsonAsync<JourneyResponseDto>();
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to start journey. Status Code: {response.StatusCode}");
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"HTTP Request Error in StartJourneyAsync: {httpEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in StartJourneyAsync: {ex.Message}");
+            }
+
+            return journeyResponse;
+        }
+
     }
 }
 

@@ -39,12 +39,12 @@
                 HorizontalOptions="Fill" />
 
             <Button
-                x:Name="OpenTrackingLocationBtn"
-                Text="Open Tracking Location" 
-                SemanticProperties.Hint="Open Tracking Location Page"
-                Clicked="OnOpenTrackingLocationBtnClicked"
+                x:Name="OpenJourneyActivationBtn"
+                Text="Open Journey Activation" 
+                SemanticProperties.Hint="Open Journey Activation"
+                Clicked="OnOpenJourneyActivationBtnClicked"
                 HorizontalOptions="Fill" />
-            
+
             <Button
                 Text="Dummy Page"
                 Clicked="OnCounterClicked1" />

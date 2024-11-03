@@ -1,4 +1,5 @@
-﻿using BanglaTracker.Core.Entities;
+﻿using BanglaTracker.Core.DTOs;
+using BanglaTracker.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,10 @@ namespace BanglaTracker.BLL.Interfaces
         Task<List<LocationPoint>> GetTrainPointsAsync();
 
         Task SendGeolocationDataAsync(LocationData locationData);
+
+        Task<JourneyResponseDto> StartJourneyAsync(
+            string fromStation,
+            string toStation,
+            string trainName);
     }
 }
