@@ -56,8 +56,12 @@ public partial class JourneyActivationPage : ContentPage
             var fromStation = FromStationPicker.SelectedItem as string;
             var toStation = ToStationPicker.SelectedItem as string;
             var trainName = TrainPicker.SelectedItem as string;
+            var currentStation = CurrentStationPicker.SelectedItem as string;
 
-            if (string.IsNullOrWhiteSpace(fromStation) || string.IsNullOrWhiteSpace(toStation) || string.IsNullOrWhiteSpace(trainName))
+            if (string.IsNullOrWhiteSpace(fromStation) 
+                || string.IsNullOrWhiteSpace(toStation) 
+                || string.IsNullOrWhiteSpace(trainName)
+                || string.IsNullOrWhiteSpace(currentStation))
             {
                 StartJourneyButton.IsEnabled = true;
                 
