@@ -2,6 +2,7 @@
 using BanglaTracker.Core.DTOs;
 using BanglaTracker.Core.Entities;
 using BanglaTracker.Core.Interfaces;
+using BanglaTracker.Core.Requests;
 
 namespace BanglaTracker.BLL.Services
 {
@@ -54,9 +55,20 @@ namespace BanglaTracker.BLL.Services
         public async Task<JourneyResponseDto> StartJourneyAsync(
             string fromStation, 
             string toStation, 
-            string trainName)
-        {            
-            return await _locationService.StartJourneyAsync(new LocationData());
+            string trainName,
+            string currentStation,
+            Guid installationID)
+        {
+            var requestModel = new StartJourneyRequest()
+            {
+                FromStation = fromStation,
+                ToStation = toStation,
+                CurrentStation = currentStation,
+                TrainNumber = trainName,
+                InstallationID = installationID
+            };
+
+            return await _locationService.StartJourneyAsync(requestModel);
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using BanglaTracker.Core.DTOs;
 using BanglaTracker.Core.Entities;
 using BanglaTracker.Core.Interfaces;
+using BanglaTracker.Core.Requests;
 using System.Net.Http.Json;
 
 namespace BanglaTracker.Infrastructure.Services
@@ -20,16 +21,16 @@ namespace BanglaTracker.Infrastructure.Services
             {
                 // Fetch geolocation API URL from configuration
                 var baseUrl = "https://192.168.0.100:44382/";
-                var weatherEndpoint = "api/WeatherForecast";
+                var apiEndpoint = "api/WeatherForecast";
 
-                var trainPointsUrl = string.Concat(baseUrl, weatherEndpoint);
-                if (string.IsNullOrEmpty(trainPointsUrl))
+                var apiUrl = string.Concat(baseUrl, apiEndpoint);
+                if (string.IsNullOrEmpty(apiUrl))
                 {
                     throw new InvalidOperationException("Train points URL is not configured.");
                 }
 
                 // Get train points data
-                var response = await _httpClient.GetFromJsonAsync<List<LocationPoint>>(trainPointsUrl);
+                var response = await _httpClient.GetFromJsonAsync<List<LocationPoint>>(apiUrl);
                 return response ?? new List<LocationPoint>();
             }
             catch (HttpRequestException httpEx)
@@ -50,16 +51,16 @@ namespace BanglaTracker.Infrastructure.Services
             {
                 // Fetch geolocation API URL from configuration
                 var baseUrl = "https://192.168.0.100:44382/";
-                var locationDataEndpoint = "api/Location";
+                var apiEndpoint = "api/Location";
 
-                var geolocationUrl = string.Concat(baseUrl, locationDataEndpoint);
-                if (string.IsNullOrEmpty(geolocationUrl))
+                var apiUrl = string.Concat(baseUrl, apiEndpoint);
+                if (string.IsNullOrEmpty(apiUrl))
                 {
                     throw new InvalidOperationException("Geolocation URL is not configured.");
                 }
 
                 // Send location data to the backend
-                var response = await _httpClient.PostAsJsonAsync(geolocationUrl, locationData);
+                var response = await _httpClient.PostAsJsonAsync(apiUrl, locationData);
                 response.EnsureSuccessStatusCode();
             }
             catch (HttpRequestException httpEx)
@@ -100,7 +101,7 @@ namespace BanglaTracker.Infrastructure.Services
             }
         }
 
-        public async Task<JourneyResponseDto> StartJourneyAsync(LocationData locationData)
+        public async Task<JourneyResponseDto> StartJourneyAsync(StartJourneyRequest requestData)
         {
             JourneyResponseDto journeyResponse = new JourneyResponseDto();
 
@@ -108,11 +109,10 @@ namespace BanglaTracker.Infrastructure.Services
             {
                 // Fetch geolocation API URL and endpoint from configuration
                 var baseUrl = "https://192.168.0.100:44382";
-                var apiEndpoint = "/api/TrainJourney/{0}/start";
+                var apiEndpoint = "/api/TrainJourney/start";
 
                 // Format the endpoint with the journeyId placeholder
-                var journeyId = 123; // TODO: Dynamically set the journey ID.
-                var apiUrl = $"{baseUrl.TrimEnd('/')}{string.Format(apiEndpoint, journeyId)}";
+                var apiUrl = $"{baseUrl.TrimEnd('/')}{apiEndpoint}";
 
                 if (string.IsNullOrWhiteSpace(apiUrl))
                 {
@@ -120,7 +120,7 @@ namespace BanglaTracker.Infrastructure.Services
                 }
 
                 // Send location data to the backend
-                var response = await _httpClient.PostAsJsonAsync(apiUrl, 1);
+                var response = await _httpClient.PostAsJsonAsync(apiUrl, requestData);
 
                 if (response.IsSuccessStatusCode)
                 {

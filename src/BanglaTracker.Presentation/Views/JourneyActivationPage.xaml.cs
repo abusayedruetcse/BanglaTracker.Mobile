@@ -71,7 +71,12 @@ public partial class JourneyActivationPage : ContentPage
             }
 
             // Call the API or internal service to start the journey and handle location tracking
-            var response = await _trainPointService.StartJourneyAsync(fromStation, toStation, trainName);
+            var response = await _trainPointService.StartJourneyAsync(
+                fromStation, 
+                toStation,                
+                trainName,
+                currentStation,
+                InstallationIdProvider.GetInstallationId());
 
             if (response.IsSuccess)
             {
@@ -168,9 +173,10 @@ public partial class JourneyActivationPage : ContentPage
                 // Prepare data to send to the backend
                 var locationData = new LocationData
                 {
+                    InstallationID = InstallationIdProvider.GetInstallationId(),
                     Latitude = location.Latitude,
                     Longitude = location.Longitude,
-                    Timestamp = DateTime.UtcNow
+                    ModifiedDateTime = DateTime.UtcNow
                 };
 
                 // Send location data to the backend
