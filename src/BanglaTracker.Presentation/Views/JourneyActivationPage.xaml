@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BanglaTracker.Presentation.Views.JourneyActivationPage"
+             Title="Journey Activation Page">
+    
+    <VerticalStackLayout Padding="20">
+        <!-- From Station -->
+        <Label Text="From" FontAttributes="Bold"/>
+        <Picker x:Name="FromStationPicker" Title="Select from station" SelectedIndexChanged="OnFromStationChanged" />
+
+        <!-- To Station -->
+        <Label Text="To Station" FontAttributes="Bold" />
+        <Picker x:Name="ToStationPicker" Title="Select to station" />
+
+        <!-- Select Train -->
+        <Label Text="Train Name" FontAttributes="Bold" />
+        <Picker x:Name="TrainPicker" Title="Select train" />
+
+        <!-- Current Station -->
+        <Label Text="Current Station" FontAttributes="Bold" />
+        <Picker x:Name="CurrentStationPicker" Title="Select current station" />
+
+        <!-- Submit Button -->
+        <Button Text="Start Journey" 
+                Clicked="OnStartJourneyClicked" 
+                BackgroundColor="RoyalBlue" 
+                TextColor="White" 
+                CornerRadius="10" 
+                Margin="0,20,0,0" 
+                x:Name="StartJourneyButton" 
+                IsEnabled="True"/>
+
+        <!-- Submit Button -->
+        <Button Text="Activate Tracking" 
+                Clicked="OnActivateTrackingButtonClicked" 
+                BackgroundColor="RoyalBlue" 
+                TextColor="White" 
+                CornerRadius="10" 
+                Margin="0,20,0,0" 
+                x:Name="ActivateTrackingButton" 
+                IsEnabled="False"/>
+
+        <!-- Submit Button -->
+        <Button Text="Stop Journey" 
+                Clicked="OnStopJourneyClicked" 
+                BackgroundColor="RoyalBlue" 
+                TextColor="White" 
+                CornerRadius="10" 
+                Margin="0,20,0,0" 
+                x:Name="StopJourneyButton" 
+                IsEnabled="False"/>
+        
+    </VerticalStackLayout>
+</ContentPage>

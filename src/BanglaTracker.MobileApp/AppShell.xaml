@@ -5,7 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BanglaTracker.MobileApp"
     Shell.FlyoutBehavior="Disabled"
-    Title="BanglaTracker.MobileApp">
+    Title="BanglaTracker.MobileApp"
+    Shell.NavBarIsVisible="True"
+    Shell.BackgroundColor="RoyalBlue"
+    Shell.TabBarBackgroundColor="Red"
+    Shell.TabBarTitleColor="White"
+    Shell.TitleColor="White">
 
     <ShellContent
         Title="Home"

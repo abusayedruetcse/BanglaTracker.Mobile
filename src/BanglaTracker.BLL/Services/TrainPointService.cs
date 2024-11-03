@@ -1,4 +1,5 @@
 ﻿using BanglaTracker.BLL.Interfaces;
+using BanglaTracker.Core.DTOs;
 using BanglaTracker.Core.Entities;
 using BanglaTracker.Core.Interfaces;
 
@@ -49,5 +50,14 @@ namespace BanglaTracker.BLL.Services
         {           
             await _locationService.SendGeolocationDataAsync(locationData);
         }
+
+        public async Task<JourneyResponseDto> StartJourneyAsync(
+            string fromStation, 
+            string toStation, 
+            string trainName)
+        {            
+            return await _locationService.StartJourneyAsync(new LocationData());
+        }
+
     }
 }
