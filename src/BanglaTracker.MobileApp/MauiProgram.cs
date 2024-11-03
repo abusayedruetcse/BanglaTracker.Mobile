@@ -50,6 +50,8 @@ namespace BanglaTracker.MobileApp
 
             
             builder.Services.AddSingleton<ITrainPointService, TrainPointService>();
+            builder.Services.AddSingleton<IUserService, UserService>();
+
             builder.Services.AddTransient<TrainLocationPage1>();
 
 

@@ -9,6 +9,8 @@ namespace BanglaTracker.Core.Interfaces
 
         Task SendGeolocationDataAsync(LocationData locationData);
 
+        Task UpdateLastActiveTimeAsync(UserLastActiveDto requestDto);
+
         Task<JourneyResponseDto> StartJourneyAsync(LocationData locationData);
     }
 }
