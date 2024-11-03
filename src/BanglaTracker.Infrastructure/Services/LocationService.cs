@@ -71,7 +71,35 @@ namespace BanglaTracker.Infrastructure.Services
                 Console.WriteLine($"Error in SendGeolocationDataAsync: {ex.Message}");
             }
         }
-        
+
+        public async Task UpdateLastActiveTimeAsync(UserLastActiveDto requestDto)
+        {
+            try
+            {
+                // Fetch API URL from configuration
+                var baseUrl = "https://192.168.0.100:44382/";
+                var apiEndpoint = "api/User/UpdateLastActiveTime";
+
+                var apiUrl = string.Concat(baseUrl, apiEndpoint);
+                if (string.IsNullOrEmpty(apiUrl))
+                {
+                    throw new InvalidOperationException("URL is not configured.");
+                }
+
+                // Send this to the backend
+                var response = await _httpClient.PostAsJsonAsync(apiUrl, requestDto);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"HTTP Request Error in UpdateLastActiveTimeAsync: {httpEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in UpdateLastActiveTimeAsync: {ex.Message}");
+            }
+        }
+
         public async Task<JourneyResponseDto> StartJourneyAsync(LocationData locationData)
         {
             JourneyResponseDto journeyResponse = new JourneyResponseDto();
