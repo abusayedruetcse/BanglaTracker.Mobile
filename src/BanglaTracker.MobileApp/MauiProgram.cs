@@ -1,10 +1,12 @@
 ﻿using BanglaTracker.BLL.Interfaces;
 using BanglaTracker.BLL.Services;
 using BanglaTracker.Core.Interfaces;
+using BanglaTracker.Infrastructure.Data.Repositories;
 using BanglaTracker.Infrastructure.Services;
 using BanglaTracker.Presentation.ViewModels;
 using BanglaTracker.Presentation.Views;
 using Microsoft.Extensions.Logging;
+using SQLite;
 
 namespace BanglaTracker.MobileApp
 {
@@ -20,6 +22,15 @@ namespace BanglaTracker.MobileApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            // Configure Database
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "BanglaTrackerClient.db");
+
+            // Register the SQLite connection
+            builder.Services.AddSingleton(new SQLiteAsyncConnection(dbPath));
+
+            // Register the generic repository for scoped lifetime
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             // Register HttpClient and LocationService
             builder.Services.AddHttpClient<ILocationService, LocationService>()
