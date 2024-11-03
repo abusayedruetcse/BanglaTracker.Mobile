@@ -14,7 +14,7 @@ namespace BanglaTracker.BLL.Services
             _locationService = locationService;
         }
 
-        public async Task UpdateLastActiveTimeAsync(string installationId)
+        public async Task UpdateLastActiveTimeAsync(Guid installationId)
         {
             var modelDto = new UserLastActiveDto()
             {

@@ -17,6 +17,8 @@ namespace BanglaTracker.BLL.Interfaces
         Task<JourneyResponseDto> StartJourneyAsync(
             string fromStation,
             string toStation,
-            string trainName);
+            string trainName,
+            string currentStation,
+            Guid installationID);
     }
 }

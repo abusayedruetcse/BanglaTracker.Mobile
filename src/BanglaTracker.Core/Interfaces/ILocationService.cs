@@ -1,5 +1,6 @@
 ﻿using BanglaTracker.Core.DTOs;
 using BanglaTracker.Core.Entities;
+using BanglaTracker.Core.Requests;
 
 namespace BanglaTracker.Core.Interfaces
 {
@@ -11,6 +12,6 @@ namespace BanglaTracker.Core.Interfaces
 
         Task UpdateLastActiveTimeAsync(UserLastActiveDto requestDto);
 
-        Task<JourneyResponseDto> StartJourneyAsync(LocationData locationData);
+        Task<JourneyResponseDto> StartJourneyAsync(StartJourneyRequest startJourneyRequest);
     }
 }

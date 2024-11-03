@@ -10,7 +10,7 @@
         <Picker x:Name="FromStationPicker" Title="Select from station" SelectedIndexChanged="OnFromStationChanged" />
 
         <!-- To Station -->
-        <Label Text="To Station" FontAttributes="Bold" />
+        <Label Text="To" FontAttributes="Bold" />
         <Picker x:Name="ToStationPicker" Title="Select to station" />
 
         <!-- Select Train -->

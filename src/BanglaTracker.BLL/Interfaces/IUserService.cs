@@ -10,7 +10,7 @@ namespace BanglaTracker.BLL.Interfaces
 {
     public interface IUserService
     {
-        Task UpdateLastActiveTimeAsync(string installationId);
+        Task UpdateLastActiveTimeAsync(Guid installationId);
 
     }
 }
