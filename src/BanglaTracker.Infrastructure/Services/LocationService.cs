@@ -9,7 +9,8 @@ namespace BanglaTracker.Infrastructure.Services
     public class LocationService : ILocationService
     {
         private readonly HttpClient _httpClient;
-
+        private static string baseUrl = "https://192.168.0.101:44382/";
+        
         public LocationService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -20,9 +21,8 @@ namespace BanglaTracker.Infrastructure.Services
             try
             {
                 // Fetch geolocation API URL from configuration
-                var baseUrl = "https://192.168.0.100:44382/";
                 var apiEndpoint = "api/WeatherForecast";
-
+                
                 var apiUrl = string.Concat(baseUrl, apiEndpoint);
                 if (string.IsNullOrEmpty(apiUrl))
                 {
@@ -50,9 +50,8 @@ namespace BanglaTracker.Infrastructure.Services
             try
             {
                 // Fetch geolocation API URL from configuration
-                var baseUrl = "https://192.168.0.100:44382/";
                 var apiEndpoint = "api/Location";
-
+                
                 var apiUrl = string.Concat(baseUrl, apiEndpoint);
                 if (string.IsNullOrEmpty(apiUrl))
                 {
@@ -78,7 +77,6 @@ namespace BanglaTracker.Infrastructure.Services
             try
             {
                 // Fetch API URL from configuration
-                var baseUrl = "https://192.168.0.100:44382/";
                 var apiEndpoint = "api/User/UpdateLastActiveTime";
 
                 var apiUrl = string.Concat(baseUrl, apiEndpoint);
@@ -108,7 +106,6 @@ namespace BanglaTracker.Infrastructure.Services
             try
             {
                 // Fetch geolocation API URL and endpoint from configuration
-                var baseUrl = "https://192.168.0.100:44382";
                 var apiEndpoint = "/api/TrainJourney/start";
 
                 // Format the endpoint with the journeyId placeholder
@@ -126,7 +123,6 @@ namespace BanglaTracker.Infrastructure.Services
                 {
                     // Deserialize the response content to JourneyResponseDto
                     journeyResponse = await response.Content.ReadFromJsonAsync<JourneyResponseDto>();
-                    journeyResponse.IsSuccess = true;
                 }
                 else
                 {

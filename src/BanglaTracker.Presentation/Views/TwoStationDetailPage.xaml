@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BanglaTracker.Presentation.Views.TwoStationDetailPage"
+             Title="Journey Details">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20">
+            <!-- Title for the page -->
+            <Label Text="Current and Next Station Details"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   HorizontalOptions="Center" />
+
+            <!-- CollectionView to display only two stations -->
+            <CollectionView ItemsSource="{Binding StationDetails}" 
+                            SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" Padding="10" Margin="0,10,0,0">
+                            <VerticalStackLayout>
+                                <!-- Station Name -->
+                                <Label Text="{Binding StationName}" 
+                                       FontAttributes="Bold"
+                                       FontSize="Medium" />
+
+                                <!-- Arrival and Departure Times -->
+                                <HorizontalStackLayout>
+                                    <Label Text="Arrival:" FontAttributes="Bold" />
+                                    <Label Text="{Binding ArrivalTime, StringFormat='{0:T}'}" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout>
+                                    <Label Text="Departure:" FontAttributes="Bold" />
+                                    <Label Text="{Binding DepartureTime, StringFormat='{0:T}'}" />
+                                </HorizontalStackLayout>
+
+                                <!-- Distance to Next Station -->
+                                <HorizontalStackLayout>
+                                    <Label Text="Distance to Next Station:" FontAttributes="Bold" />
+                                    <Label Text="{Binding DistanceToNextStation, StringFormat='{0} km'}" />
+                                </HorizontalStackLayout>
+
+                                <!-- Add additional metrics as needed -->
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -60,6 +60,8 @@ namespace BanglaTracker.MobileApp
             builder.Services.AddTransient<TrainLocationViewModel>();
 
             builder.Services.AddSingleton<JourneyActivationPage>();
+            builder.Services.AddTransient<JourneySearchPage>();
+            builder.Services.AddTransient<TwoStationDetailPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
