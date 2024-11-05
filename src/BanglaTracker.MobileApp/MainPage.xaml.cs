@@ -45,6 +45,15 @@ namespace BanglaTracker.MobileApp
             await Navigation.PushAsync(activationPage);
         }
 
+        private async void OnSearchTrainBtnClicked(object sender, EventArgs e)
+        {
+            // Resolve JourneySearchPage from the DI container
+            var searchPage = _serviceProvider.GetRequiredService<JourneySearchPage>();
+
+            // Navigate to JourneySearchPage
+            await Navigation.PushAsync(searchPage);
+        }
+
         private async void OnCounterClicked1(object sender, EventArgs e)
         {
             // Navigate to TrainLocationPage

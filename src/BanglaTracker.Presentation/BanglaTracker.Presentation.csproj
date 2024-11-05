@@ -34,16 +34,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\JourneySearchPage.xaml.cs">
+	    <DependentUpon>JourneySearchPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TrainLocationPage.xaml.cs">
 	    <DependentUpon>TrainLocationPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\JourneySearchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\JourneyActivationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TrainLocationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TwoStationDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
