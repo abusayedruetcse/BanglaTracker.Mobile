@@ -40,6 +40,9 @@
 	  <Compile Update="Views\TrainLocationPage.xaml.cs">
 	    <DependentUpon>TrainLocationPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\TwoStationsDetailPage.xaml.cs">
+	    <DependentUpon>TwoStationsDetailPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -52,7 +55,7 @@
 	  <MauiXaml Update="Views\TrainLocationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TwoStationDetailPage.xaml">
+	  <MauiXaml Update="Views\TwoStationsDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

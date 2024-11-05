@@ -48,7 +48,7 @@ public partial class JourneySearchPage : ContentPage
     private async void OnSearchBtnClicked(object sender, EventArgs e)
     {
         // Resolve JourneySearchPage from the DI container
-        var detailsPage = _serviceProvider.GetRequiredService<TwoStationDetailPage>();
+        var detailsPage = _serviceProvider.GetRequiredService<TwoStationsDetailPage>();
 
         // Navigate to JourneySearchPage
         await Navigation.PushAsync(detailsPage);
