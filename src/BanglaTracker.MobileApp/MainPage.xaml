@@ -51,7 +51,14 @@
                 SemanticProperties.Hint="Search Train"
                 Clicked="OnSearchTrainBtnClicked"
                 HorizontalOptions="Fill" />
-            
+
+            <Button
+                x:Name="AllStationsBtn"
+                Text="All Stations" 
+                SemanticProperties.Hint="Search Train"
+                Clicked="OnShowAllStationsBtnClicked"
+                HorizontalOptions="Fill" />
+
             <Button
                 Text="Dummy Page"
                 Clicked="OnCounterClicked1" />

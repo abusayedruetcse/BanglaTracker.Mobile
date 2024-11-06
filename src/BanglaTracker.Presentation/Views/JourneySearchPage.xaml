@@ -7,19 +7,36 @@
     <VerticalStackLayout Padding="20">
         <!-- From Station -->
         <Label Text="From" FontAttributes="Bold"/>
-        <Picker x:Name="FromStationPicker" Title="Select from station" SelectedIndexChanged="OnFromStationChanged" />
+        <Picker x:Name="FromStationPicker" 
+                Title="Select from station" 
+                SelectedIndexChanged="OnFromStationChanged" 
+                ItemsSource="{Binding Stations}" 
+                ItemDisplayBinding="{Binding Name}" 
+                SelectedItem="{Binding SelectedStation}" />
 
         <!-- To Station -->
         <Label Text="To" FontAttributes="Bold" />
-        <Picker x:Name="ToStationPicker" Title="Select to station" />
+        <Picker x:Name="ToStationPicker" 
+                Title="Select to station" 
+                ItemsSource="{Binding Stations}" 
+                ItemDisplayBinding="{Binding Name}" 
+                SelectedItem="{Binding SelectedStation}" />
 
         <!-- Select Train -->
         <Label Text="Train Name" FontAttributes="Bold" />
-        <Picker x:Name="TrainPicker" Title="Select train" />
+        <Picker x:Name="TrainPicker" 
+                Title="Select train"
+                ItemsSource="{Binding Trains}" 
+                ItemDisplayBinding="{Binding Name}" 
+                SelectedItem="{Binding SelectedTrain}"/>
 
         <!-- Current Station -->
         <Label Text="Current Station" FontAttributes="Bold" />
-        <Picker x:Name="CurrentStationPicker" Title="Select current station" />
+        <Picker x:Name="CurrentStationPicker" 
+                Title="Select current station"
+                ItemsSource="{Binding Stations}" 
+                ItemDisplayBinding="{Binding Name}" 
+                SelectedItem="{Binding SelectedStation}" />
 
         <!-- Submit Button -->
         <Button Text="Search Train" 

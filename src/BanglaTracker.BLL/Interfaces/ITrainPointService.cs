@@ -20,5 +20,9 @@ namespace BanglaTracker.BLL.Interfaces
             string trainName,
             string currentStation,
             Guid installationID);
+
+        Task<List<Train>> GetAllTrainsAsync();
+
+        Task<List<Station>> GetAllStationsAsync();
     }
 }

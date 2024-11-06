@@ -2,9 +2,9 @@ using BanglaTracker.Presentation.ViewModels;
 
 namespace BanglaTracker.Presentation.Views;
 
-public partial class TwoStationDetailPage : ContentPage
+public partial class TwoStationsDetailPage : ContentPage
 {
-	public TwoStationDetailPage()
+	public TwoStationsDetailPage()
 	{
 		InitializeComponent();
         BindingContext = new JourneyDetailViewModel(); // Set the ViewModel as BindingContext
