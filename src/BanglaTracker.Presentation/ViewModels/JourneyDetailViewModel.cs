@@ -15,15 +15,15 @@ namespace BanglaTracker.Presentation.ViewModels
                 new StationDetail
                 {
                     StationName = "Dhaka",
-                    ArrivalTime = DateTime.Now,
-                    DepartureTime = DateTime.Now.AddMinutes(10),
+                    ArrivalTime = "5 mins",
+                    DepartureTime = "15 mins",
                     DistanceToNextStation = 5.2
                 },
                 new StationDetail
                 {
                     StationName = "Rajshahi",
-                    ArrivalTime = DateTime.Now.AddMinutes(15),
-                    DepartureTime = DateTime.Now.AddMinutes(25),
+                    ArrivalTime = "5 mins",
+                    DepartureTime = "15 mins",
                     DistanceToNextStation = 7.3
                 }
             };
