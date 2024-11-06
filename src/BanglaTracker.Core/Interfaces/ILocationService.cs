@@ -13,5 +13,9 @@ namespace BanglaTracker.Core.Interfaces
         Task UpdateLastActiveTimeAsync(UserLastActiveDto requestDto);
 
         Task<JourneyResponseDto> StartJourneyAsync(StartJourneyRequest startJourneyRequest);
+
+        Task<List<Train>> GetAllTrainsAsync();
+
+        Task<List<Station>> GetAllStationsAsync();
     }
 }

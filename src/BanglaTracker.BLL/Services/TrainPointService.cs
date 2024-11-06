@@ -71,5 +71,14 @@ namespace BanglaTracker.BLL.Services
             return await _locationService.StartJourneyAsync(requestModel);
         }
 
+        public async Task<List<Train>> GetAllTrainsAsync()
+        {
+            return await _locationService.GetAllTrainsAsync();
+        }
+
+        public async Task<List<Station>> GetAllStationsAsync()
+        {
+            return await _locationService.GetAllStationsAsync();
+        }
     }
 }

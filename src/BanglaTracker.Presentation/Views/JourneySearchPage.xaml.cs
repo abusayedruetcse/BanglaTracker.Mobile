@@ -5,22 +5,32 @@ namespace BanglaTracker.Presentation.Views;
 
 public partial class JourneySearchPage : ContentPage
 {
-    private Timer _timer;
-    private bool _isTracking = false;
-
     private readonly ITrainPointService _trainPointService;
     private readonly IServiceProvider _serviceProvider;
+    private bool _isDataLoaded;
 
     public JourneySearchPage(
         ITrainPointService trainPointService,
         IServiceProvider serviceProvider)
     {
         InitializeComponent();
-        LoadStationData();
-        LoadTrainData();
-        
+
         _trainPointService = trainPointService;
         _serviceProvider = serviceProvider;
+
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Check if data has already been loaded
+        if (!_isDataLoaded)
+        {
+            await LoadStationDataAsync();
+            await LoadTrainDataAsync();
+            _isDataLoaded = true;  // Set the flag to true after data is loaded
+        }
     }
 
     protected override bool OnBackButtonPressed()
@@ -29,24 +39,27 @@ public partial class JourneySearchPage : ContentPage
         return base.OnBackButtonPressed();
     }
 
-    private void LoadStationData()
+    private async Task LoadStationDataAsync()
     {
         // Fetch station data from a service or database
-        var stations = new List<string> { "Station A", "Station B", "Station C" };
+        var stations = await _trainPointService.GetAllStationsAsync();
+        
         FromStationPicker.ItemsSource = stations;
         ToStationPicker.ItemsSource = stations;
         CurrentStationPicker.ItemsSource = stations;
     }
 
-    private void LoadTrainData()
+    private async Task LoadTrainDataAsync()
     {
         // Fetch train data from a service or database
-        var trains = new List<string> { "Train 1", "Train 2", "Train 3" };
+        var trains = await _trainPointService.GetAllTrainsAsync();
         TrainPicker.ItemsSource = trains;
     }
 
     private async void OnSearchBtnClicked(object sender, EventArgs e)
     {
+        var item = FromStationPicker.SelectedItem;
+
         // Resolve JourneySearchPage from the DI container
         var detailsPage = _serviceProvider.GetRequiredService<TwoStationsDetailPage>();
 

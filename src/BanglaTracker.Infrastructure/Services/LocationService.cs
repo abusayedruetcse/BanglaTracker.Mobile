@@ -9,7 +9,7 @@ namespace BanglaTracker.Infrastructure.Services
     public class LocationService : ILocationService
     {
         private readonly HttpClient _httpClient;
-        private static string baseUrl = "https://192.168.0.101:44382/";
+        private static string baseUrl = "https://192.168.0.102:44382/";
         
         public LocationService(HttpClient httpClient)
         {
@@ -141,6 +141,63 @@ namespace BanglaTracker.Infrastructure.Services
             return journeyResponse;
         }
 
+        public async Task<List<Train>> GetAllTrainsAsync()
+        {
+            try
+            {
+                // Fetch geolocation API URL from configuration
+                var apiEndpoint = "api/train/get-all-trains";
+
+                var apiUrl = string.Concat(baseUrl, apiEndpoint);
+                if (string.IsNullOrEmpty(apiUrl))
+                {
+                    throw new InvalidOperationException("URL is not configured.");
+                }
+
+                // Get train points data
+                var response = await _httpClient.GetFromJsonAsync<List<Train>>(apiUrl);
+                return response ?? new List<Train>();
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"HTTP Request Error in GetTrainPointsAsync: {httpEx.Message}");
+                return new List<Train>(); // Return empty list on failure
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetTrainPointsAsync: {ex.Message}");
+                return new List<Train>();
+            }
+        }
+
+        public async Task<List<Station>> GetAllStationsAsync()
+        {
+            try
+            {
+                // Fetch geolocation API URL from configuration
+                var apiEndpoint = "api/train/get-all-stations";
+
+                var apiUrl = string.Concat(baseUrl, apiEndpoint);
+                if (string.IsNullOrEmpty(apiUrl))
+                {
+                    throw new InvalidOperationException("URL is not configured.");
+                }
+
+                // Get train points data
+                var response = await _httpClient.GetFromJsonAsync<List<Station>>(apiUrl);
+                return response ?? new List<Station>();
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"HTTP Request Error in GetTrainPointsAsync: {httpEx.Message}");
+                return new List<Station>(); // Return empty list on failure
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetTrainPointsAsync: {ex.Message}");
+                return new List<Station>();
+            }
+        }
     }
 }
 
