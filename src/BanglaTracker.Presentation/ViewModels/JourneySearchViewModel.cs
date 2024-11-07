@@ -12,7 +12,6 @@ namespace BanglaTracker.Presentation.ViewModels
     {
         private readonly ITrainPointService _trainPointService;
         private readonly INavigationService _navigationService;
-        private readonly IServiceProvider _serviceProvider;
 
         public ObservableCollection<Station> Stations { get; } = new();
         public ObservableCollection<Train> Trains { get; } = new();
@@ -61,12 +60,10 @@ namespace BanglaTracker.Presentation.ViewModels
 
         public JourneySearchViewModel(
             ITrainPointService trainPointService,
-            INavigationService navigationService,
-            IServiceProvider serviceProvider)
+            INavigationService navigationService)
         {
             _trainPointService = trainPointService;
             _navigationService = navigationService;
-            _serviceProvider = serviceProvider;
             SearchCommand = new Command(OnSearch);
         }
 
