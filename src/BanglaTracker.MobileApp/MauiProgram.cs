@@ -3,6 +3,8 @@ using BanglaTracker.BLL.Services;
 using BanglaTracker.Core.Interfaces;
 using BanglaTracker.Infrastructure.Data.Repositories;
 using BanglaTracker.Infrastructure.Services;
+using BanglaTracker.Presentation.Interfaces;
+using BanglaTracker.Presentation.Services;
 using BanglaTracker.Presentation.ViewModels;
 using BanglaTracker.Presentation.Views;
 using Microsoft.Extensions.Logging;
@@ -54,12 +56,15 @@ namespace BanglaTracker.MobileApp
 
             builder.Services.AddTransient<TrainLocationPage1>();
 
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
 
             // Register pages and view models
             builder.Services.AddTransient<TrainLocationPage>();
             builder.Services.AddTransient<TrainLocationViewModel>();
 
             builder.Services.AddSingleton<JourneyActivationPage>();
+
+            builder.Services.AddTransient<JourneySearchViewModel>();
             builder.Services.AddTransient<JourneySearchPage>();
 
             builder.Services.AddTransient<JourneyDetailViewModel>();
@@ -67,6 +72,7 @@ namespace BanglaTracker.MobileApp
 
             builder.Services.AddTransient<AllStationsDetailViewModel>();
             builder.Services.AddTransient<AllStationsDetailPage>();
+            
 
 #if DEBUG
             builder.Logging.AddDebug();
